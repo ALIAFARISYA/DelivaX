@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DelivaX - Place Your Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="containers">
+        <div class= "page-header">
+            <div class="logos">DelivaX</div>
+            <p class="tagline">Complete your order - Just a few steps away from deliciousness!</p>
+            <div class="malaysia-notice">
+                <i class="fas fa-info-circle"></i> We currently deliver only within Malaysia
+            </div>
+        </div>
+        
+        <!-- Checkout Progress -->
+        <div class="checkout-progress">
+            <div class="progress-step">
+                <div class="step-circle active">1</div>
+                <div class="step-label active">Contact Info</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle active">2</div>
+                <div class="step-label active">Shipping</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle active">3</div>
+                <div class="step-label active">Review</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">4</div>
+                <div class="step-label">Payment</div>
+            </div>
+        </div>
+        
+        <div class="checkout-container">
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-user"></i> Contact Information</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name" class="required">First Name</label>
+                        <input type="text" id="first-name" placeholder="Enter your first name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last-name" class="required">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2. Shipping Information -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-truck"></i> Shipping Information</h2>
+                
+                <div class="form-group">
+                    <label for="street-address" class="required">Street Address</label>
+                        <input type="text" id="street-address" placeholder="Enter your street address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="town-city" class="required">Town / City</label>
+                        <input type="text" id="town-city" placeholder="Enter your town/city" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postcode" class="required">Postcode</label>
+                        <input type="text" id="postcode" placeholder="Enter your postcode" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="state" class="required">State</label>
+                        <select id="state" required>
+                            <option value="">Select your state</option>
+                            <option value="johor">Johor</option>
+                            <option value="kedah">Kedah</option>
+                            <option value="kelantan">Kelantan</option>
+                            <option value="kl">Kuala Lumpur</option>
+                            <option value="labuan">Labuan</option>
+                            <option value="melaka">Melaka</option>
+                            <option value="negeri-sembilan">Negeri Sembilan</option>
+                            <option value="pahang">Pahang</option>
+                            <option value="penang">Penang</option>
+                            <option value="perak">Perak</option>
+                            <option value="perlis">Perlis</option>
+                            <option value="putrajaya">Putrajaya</option>
+                            <option value="sabah">Sabah</option>
+                            <option value="sarawak">Sarawak</option>
+                            <option value="selangor">Selangor</option>
+                            <option value="terengganu">Terengganu</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country" class="required">Country</label>
+                        <input type="text" id="country" value="Malaysia" readonly style="background-color: #f0f0f0;">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Shipping Method</label>
+                    <div class="radio-group">
+                        <div class="radio-option selected" id="self-pickup">
+                            <input type="radio" id="pickup" name="shipping" value="pickup" checked>
+                            <label for="pickup">Self Pickup</label>
+                            <span style="margin-left: auto; font-weight: 700; color: #27ae60;">Free</span>
+                        </div>
+                        
+                        <div class="radio-option" id="delivery">
+                            <input type="radio" id="delivery-option" name="shipping" value="delivery">
+                            <label for="delivery-option">Delivery</label>
+                            <span style="margin-left: auto; font-weight: 700;">RM 30.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3. Payment Method -->
+<div class="checkout-section">
+    <h2 class="section-title"><i class="fas fa-credit-card"></i> Payment Method</h2>
+    
+    <div class="payment-options">
+        <div class="payment-option selected" id="paypal-option">
+            <input type="radio" id="paypal" name="payment" value="paypal" checked>
+            <i class="fab fa-cc-paypal"></i>
+            <label for="paypal">PayPal</label>
+        </div>
+        
+        <div class="payment-option" id="creditcard-option">
+            <input type="radio" id="creditcard" name="payment" value="creditcard">
+            <i class="far fa-credit-card"></i>
+            <label for="creditcard">Credit/Debit Card</label>
+        </div>
+        
+        <div class="payment-option" id="onlinebanking-option">
+            <input type="radio" id="onlinebanking" name="payment" value="onlinebanking">
+            <i class="fas fa-university"></i>
+            <label for="onlinebanking">Online Banking (FPX)</label>
+        </div>
+        
+        <div class="payment-option" id="ewallet-option">
+            <input type="radio" id="ewallet" name="payment" value="ewallet">
+            <i class="fas fa-mobile-alt"></i>
+            <label for="ewallet">eWallet</label>
+        </div>
+    </div>
+    
+    <div class="form-group" style="margin-top: 25px;">
+        <div class="checkbox-group">
+            <input type="checkbox" id="same-as-shipping" checked>
+            <label for="same-as-shipping">Billing address same as shipping address</label>
+        </div>
+    </div>
+    
+    <div id="billing-details" style="display: none; margin-top: 20px;">
+        <h3 style="font-size: 1.1rem; color: #5c3d2e; margin-bottom: 15px;">Billing Address</h3>
+        <div class="form-group">
+            <label for="billing-street" class="required">Billing Street Address</label>
+            <input type="text" id="billing-street" placeholder="Enter billing street address">
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="billing-city" class="required">Billing Town / City</label>
+                <input type="text" id="billing-city" placeholder="Enter billing town/city">
+            </div>
+            
+            <div class="form-group">
+                <label for="billing-postcode" class="required">Billing Postcode</label>
+                <input type="text" id="billing-postcode" placeholder="Enter billing postcode">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="billing-state" class="required">Billing State</label>
+            <select id="billing-state">
+                <option value="">Select billing state</option>
+                <option value="johor">Johor</option>
+                <option value="kedah">Kedah</option>
+                <option value="kelantan">Kelantan</option>
+                <option value="kl">Kuala Lumpur</option>
+                <option value="labuan">Labuan</option>
+                <option value="melaka">Melaka</option>
+                <option value="negeri-sembilan">Negeri Sembilan</option>
+                <option value="pahang">Pahang</option>
+                <option value="penang">Penang</option>
+                <option value="perak">Perak</option>
+                <option value="perlis">Perlis</option>
+                <option value="putrajaya">Putrajaya</option>
+                <option value="sabah">Sabah</option>
+                <option value="sarawak">Sarawak</option>
+                <option value="selangor">Selangor</option>
+                <option value="terengganu">Terengganu</option>
+            </select>
+        </div>
+    </div>
+</div>
+            
+            <!-- 4. Order Summary -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Order Summary</h2>
+                
+                <!-- ENHANCED Order Summary -->
+                <div class="order-summary-enhanced">
+                    <div class="order-summary-title">
+                        <span><i class="fas fa-receipt"></i> Your Cart Items</span>
+                        <span class="summary-update-time" id="summaryUpdateTime"></span>
+                    </div>
+                    
+                    <!-- Cart Items Container -->
+                    <div id="cartItemsContainer">
+                        <div class="empty-cart-message">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Add items from the menu to continue</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Subtotal -->
+                    <div class="summary-item" id="subtotalSummaryItem" style="display: none;">
+                        <div class="summary-label">
+                            <span>Subtotal</span>
+                            <div class="summary-details" id="itemCountDetails">0 items</div>
+                        </div>
+                        <div class="summary-price" id="subtotalSummaryPrice">RM 0.00</div>
+                    </div>
+                    
+                    <!-- Delivery Fee -->
+                    <div class="summary-item" id="deliverySummaryItem" style="display: none;">
+                        <div class="summary-label">
+                            <span>Delivery Fee</span>
+                            <div class="summary-details" id="deliveryDetails">Standard delivery</div>
+                        </div>
+                        <div class="summary-price" id="deliverySummaryPrice">RM 30.00</div>
+                    </div>
+                    
+                    <!-- Discount Message -->
+                    <div class="discount-message-enhanced" id="discountMessageEnhanced" style="display: none;">
+                        <i class="fas fa-tag"></i>
+                        <span id="discountMessageText"></span>
+                    </div>
+                    
+                    <!-- Discount Applied -->
+                    <div class="summary-item" id="discountSummaryItem" style="display: none;">
+                        <div class="summary-label discount-item-enhanced">
+                            <span>Discount Applied</span>
+                            <div class="summary-details" id="discountTypeText"></div>
+                        </div>
+                        <div class="summary-price discount-item-enhanced" id="discountSummaryValue">-RM 0.00</div>
+                    </div>
+                    
+                    <!-- Total -->
+                    <div class="summary-total">
+                        <div class="total-row">
+                            <span>Total Amount</span>
+                            <span class="total-amount" id="totalSummaryPrice">RM 0.00</span>
+                        </div>
+                        <div class="summary-note">
+                            <i class="fas fa-info-circle"></i> 
+                            Price includes tax. Free pickup available at our restaurant.
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Code Input -->
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="discount">Discount Code (Optional)</label>
+                        <div class="discount-section">
+                            <input type="text" id="discount" placeholder="Enter discount code">
+                            <button class="apply-btn" id="apply-discount" onclick="applyDiscount()">Apply</button>
+                        </div>
+                        <div class="discount-applied" id="discount-message"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 5. Delivery/Pickup Schedule -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Delivery/Pickup Schedule</h2>
+                
+                <div class="date-time-section">
+                    <div class="form-group">
+                        <label for="delivery-date" class="required">Select Date</label>
+                        <input type="date" id="delivery-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="delivery-time" class="required">Select Time</label>
+                        <select id="delivery-time" required>
+                            <option value="">Select a time</option>
+                            <option value="09:00">9:00 AM - 10:00 AM</option>
+                            <option value="10:00">10:00 AM - 11:00 AM</option>
+                            <option value="11:00">11:00 AM - 12:00 PM</option>
+                            <option value="12:00">12:00 PM - 1:00 PM</option>
+                            <option value="13:00">1:00 PM - 2:00 PM</option>
+                            <option value="14:00">2:00 PM - 3:00 PM</option>
+                            <option value="15:00">3:00 PM - 4:00 PM</option>
+                            <option value="16:00">4:00 PM - 5:00 PM</option>
+                            <option value="17:00">5:00 PM - 6:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="special-instructions">Special Instructions (Optional)</label>
+                    <textarea id="special-instructions" rows="3" placeholder="Add any special instructions for delivery or preparation..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Place Order Button -->
+            <button id="place-order" class="place-order-btn" onclick="proceedToPayment()">
+                <i class="fas fa-lock"></i> Place Order & Proceed to Payment
+            </button>
+            
+            <div class="terms-section">
+                <p>By placing your order, you agree to DelivaX's <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
