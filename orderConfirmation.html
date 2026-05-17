@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - DelivaX Elite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .corner-decoration {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, transparent 50%, #e8f4fd 50%);
+            border-radius: 0 0 0 100px;
+        }
+
+        .corner-decoration-2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(225deg, transparent 50%, #e8f4fd 50%);
+            border-radius: 0 100px 0 0;
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: bounce 0.5s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .success-icon i {
+            font-size: 45px;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 28px;
+            color: #28a745;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .success-subtitle {
+            font-size: 18px;
+            color: #1a5f7a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .confirmation-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .card-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #dee2e6;
+        }
+
+        .card-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #1a5f7a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .section-title i {
+            color: #2d6cdf;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .details-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details-label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .details-value {
+            font-size: 15px;
+            color: #1a5f7a;
+            font-weight: 600;
+        }
+
+        .cart-items {
+            margin-top: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 700;
+            color: #1a5f7a;
+            margin-bottom: 3px;
+        }
+
+        .item-details {
+            font-size: 11px;
+            color: #6c757d;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: #2d6cdf;
+            font-size: 14px;
+        }
+
+        .payment-summary {
+            background: linear-gradient(135deg, #e8f4fd, #d4ecfa);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #2d6cdf;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #cbd5e0;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: #1a5f7a;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .total-row {
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #2d6cdf;
+            font-size: 18px;
+        }
+
+        .total-row .summary-value {
+            font-size: 22px;
+            color: #2d6cdf;
+            font-weight: 800;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d6cdf, #1a5f7a);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45,108,223,0.3);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #1a5f7a;
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+
+        .confirmation-footer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: #2d6cdf;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .order-number {
+            background: #fff3cd;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .order-number strong {
+            color: #856404;
+        }
+
+        .full-address {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 5px;
+            border: 1px solid #e9ecef;
+        }
+
+        .address-line {
+            font-size: 14px;
+            color: #1a5f7a;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .confirmation-container {
+                padding: 20px;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .success-title {
+                font-size: 22px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .confirmation-container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .action-buttons {
+                display: none;
+            }
+            .confirmation-footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container" id="confirmationContainer">
+        <div class="corner-decoration"></div>
+        <div class="corner-decoration-2"></div>
+        
+        <!-- Success Header -->
+        <div class="success-header">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-subtitle">Thank you for your order from DelivaX Elite</p>
+            <p>Your order has been confirmed and is being prepared</p>
+        </div>
+        
+        <!-- Order Number -->
+        <div class="order-number" id="orderNumberDiv">
+            <strong>Order Number: <span id="orderId">Loading...</span></strong>
+        </div>
+        
+        <!-- Confirmation Card -->
+        <div class="confirmation-card">
+            <!-- Order Summary -->
+            <div class="card-section">
+                <h3 class="section-title"><i class="fas fa-receipt"></i> Order Summary</h3>
+                
+                <div class="details-grid">
+                    <div class="details-item">
+                        <div class="details-label">Order Date</div>
+                        <div class="details-value" id="orderDate">-</div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">Order Time</div>
+                        <div class="details-value" id="orderTime">-</div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">Customer Name</div>
+                        <div class="details-value" id="confName">-</div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">Contact Number</div>
+                        <div class="details-value" id="confPhone">-</div>
+                    </div>
+
+                    <div class="details-item">
+                        <div class="details-label">Payment Method</div>
+                        <div class="details-value" id="confMethod">-</div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">Transaction ID</div>
+                        <div class="details-value" id="transactionId">-</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Delivery Details - With Postcode and City -->
+            <div class="card-section">
+                <h3 class="section-title"><i class="fas fa-truck"></i> Delivery Details</h3>
+                
+                <div class="details-grid">
+                    <div class="details-item" style="grid-column: span 2;">
+                        <div class="details-label">Delivery Address</div>
+                        <div class="full-address">
+                            <div class="address-line" id="confAddress">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">Postcode</div>
+                        <div class="details-value" id="confPostcode">-</div>
+                    </div>
+                    
+                    <div class="details-item">
+                        <div class="details-label">City</div>
+                        <div class="details-value" id="confCity">-</div>
+                    </div>
+                    
+                    <div class="details-item" style="grid-column: span 2;">
+                        <div class="details-label">Delivery Note</div>
+                        <div class="details-value" id="confNote">-</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Items -->
+            <div class="card-section">
+                <h3 class="section-title"><i class="fas fa-shopping-cart"></i> Order Items</h3>
+                
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be loaded here -->
+                    <div style="text-align: center; padding: 20px;">Loading order items...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Payment Summary -->
+        <div class="payment-summary">
+            <h3 class="section-title" style="border: none; margin-bottom: 20px; color: #27ae60;">
+                <i class="fas fa-money-check-alt"></i> Payment Summary
+            </h3>
+            
+            <div class="summary-row">
+                <span class="summary-label">Subtotal</span>
+                <span class="summary-value" id="subtotalAmount">RM 0.00</span>
+            </div>
+            
+            <div class="summary-row" id="discountRow" style="display: none;">
+                <span class="summary-label">Discount Applied</span>
+                <span class="summary-value" id="discountAmount" style="color: #27ae60;">-RM 0.00</span>
+            </div>
+            
+            <div class="summary-row">
+                <span class="summary-label">Delivery Fee</span>
+                <span class="summary-value" id="deliveryFee">RM 3.00</span>
+            </div>
+            
+            <div class="summary-row total-row">
+                <span class="summary-label">Total Paid</span>
+                <span class="summary-value" id="totalAmount">RM 0.00</span>
+            </div>
+            
+            <div style="font-size: 0.85rem; color: #27ae60; margin-top: 15px; text-align: center;">
+                <i class="fas fa-check-circle"></i>
+                <span id="paymentStatus">Payment completed successfully via FPX</span>
+            </div>
+        </div>
+  
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-secondary" onclick="printConfirmation()">
+                <i class="fas fa-print"></i> Print Receipt
+            </button>
+            <button class="btn btn-primary" onclick="trackOrder()">
+                <i class="fas fa-map-marker-alt"></i> Track Order
+            </button>
+            <button class="btn btn-secondary" onclick="backToMenu()">
+                <i class="fas fa-utensils"></i> Back to Menu
+            </button>
+        </div>
+        
+        <!-- Footer -->
+        <div class="confirmation-footer">
+            <p>A confirmation has been sent to your registered contact.</p>
+            <p>If you have any questions, please contact our customer service.</p>
+            
+            <div class="footer-links">
+                <a href="#" onclick="backToMenu(); return false;"><i class="fas fa-utensils"></i> Browse Menu</a>
+                <a href="#"><i class="fas fa-headset"></i> Contact Support</a>
+                <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Order data from localStorage
+        let orderData = null;
+
+        // Load order data on page load
+        function loadOrderData() {
+            console.log('Loading order data...');
+            
+            // Try to get order data from localStorage (set by payment gateway)
+            const savedOrder = localStorage.getItem('confirmed_order');
+            const paymentResult = localStorage.getItem('fpx_payment_result');
+            const pendingOrder = localStorage.getItem('pending_order');
+            
+            if (savedOrder) {
+                try {
+                    orderData = JSON.parse(savedOrder);
+                    console.log('Loaded from confirmed_order:', orderData);
+                    displayOrderData();
+                } catch(e) {
+                    console.error('Error parsing confirmed_order:', e);
+                    loadDemoData();
+                }
+            } else if (paymentResult && pendingOrder) {
+                try {
+                    const payment = JSON.parse(paymentResult);
+                    orderData = JSON.parse(pendingOrder);
+                    orderData.transactionId = payment.transactionId;
+                    orderData.paymentStatus = 'COMPLETED';
+                    console.log('Loaded from pending_order + payment:', orderData);
+                    displayOrderData();
+                } catch(e) {
+                    console.error('Error parsing data:', e);
+                    loadDemoData();
+                }
+            } else {
+                console.log('No order data found, loading demo data');
+                loadDemoData();
+            }
+        }
+
+        function loadDemoData() {
+            // Demo order data for testing
+            orderData = {
+                id: 'ORD' + Math.floor(Math.random() * 10000),
+                date: new Date().toLocaleDateString('en-MY'),
+                time: new Date().toLocaleTimeString('en-MY'),
+                customer: {
+                    name: 'Ahmad Bin Abdullah',
+                    phone: '+60 12-345 6789',
+                    address: 'No. 5, Jalan Cenderawasih, Taman Sri Merdeka',
+                    postcode: '20000',
+                    city: 'Kuala Terengganu',
+                    note: 'Please leave at the guard house'
+                },
+                items: [
+                    { item: { name: 'Chicken Mandi' }, qty: 2, unitPrice: 18, addons: [], options: { Spice: 'Medium' } },
+                    { item: { name: 'Mint Tea' }, qty: 1, unitPrice: 3, addons: [], options: { Temp: 'Hot' } }
+                ],
+                payment: 'FPX',
+                transactionId: 'TXN' + Date.now(),
+                total: 39.00,
+                saving: 0
+            };
+            displayOrderData();
+        }
+
+        function displayOrderData() {
+            if (!orderData) {
+                console.error('No order data to display');
+                return;
+            }
+            
+            console.log('Displaying order data:', orderData);
+            
+            // Set order details
+            const orderIdEl = document.getElementById('orderId');
+            const orderDateEl = document.getElementById('orderDate');
+            const orderTimeEl = document.getElementById('orderTime');
+            const confNameEl = document.getElementById('confName');
+            const confPhoneEl = document.getElementById('confPhone');
+            const confMethodEl = document.getElementById('confMethod');
+            const transactionIdEl = document.getElementById('transactionId');
+            
+            if (orderIdEl) orderIdEl.textContent = orderData.id || 'N/A';
+            if (orderDateEl) orderDateEl.textContent = orderData.date || new Date().toLocaleDateString('en-MY');
+            if (orderTimeEl) orderTimeEl.textContent = orderData.time || new Date().toLocaleTimeString('en-MY');
+            if (confNameEl) confNameEl.textContent = orderData.customer?.name || 'Guest';
+            if (confPhoneEl) confPhoneEl.textContent = orderData.customer?.phone || '-';
+            if (confMethodEl) confMethodEl.textContent = orderData.payment?.toUpperCase() || 'FPX';
+            if (transactionIdEl) transactionIdEl.textContent = orderData.transactionId || '-';
+            
+            // Delivery details - address, postcode, city and note
+            const confAddressEl = document.getElementById('confAddress');
+            const confPostcodeEl = document.getElementById('confPostcode');
+            const confCityEl = document.getElementById('confCity');
+            const confNoteEl = document.getElementById('confNote');
+            
+            if (confAddressEl) confAddressEl.textContent = orderData.customer?.address || '-';
+            if (confPostcodeEl) confPostcodeEl.textContent = orderData.customer?.postcode || '-';
+            if (confCityEl) confCityEl.textContent = orderData.customer?.city || '-';
+            if (confNoteEl) confNoteEl.textContent = orderData.customer?.note || 'No special instructions';
+            
+            // Calculate totals
+            const subtotal = orderData.items?.reduce((sum, item) => sum + (item.unitPrice * item.qty), 0) || 0;
+            const delivery = 3.00;
+            const discount = orderData.saving || 0;
+            const total = subtotal + delivery - discount;
+            
+            const subtotalAmountEl = document.getElementById('subtotalAmount');
+            const totalAmountEl = document.getElementById('totalAmount');
+            const deliveryFeeEl = document.getElementById('deliveryFee');
+            const discountRowEl = document.getElementById('discountRow');
+            const discountAmountEl = document.getElementById('discountAmount');
+            
+            if (subtotalAmountEl) subtotalAmountEl.textContent = `RM ${subtotal.toFixed(2)}`;
+            if (totalAmountEl) totalAmountEl.textContent = `RM ${total.toFixed(2)}`;
+            if (deliveryFeeEl) deliveryFeeEl.textContent = `RM ${delivery.toFixed(2)}`;
+            
+            if (discount > 0 && discountRowEl && discountAmountEl) {
+                discountRowEl.style.display = 'flex';
+                discountAmountEl.textContent = `-RM ${discount.toFixed(2)}`;
+            }
+            
+            // Display cart items
+            if (orderData.items && orderData.items.length > 0) {
+                const cartItemsHtml = orderData.items.map(item => {
+                    const optionsText = item.options ? Object.entries(item.options).map(([k,v]) => `${k}: ${v}`).join(', ') : '';
+                    const addonsText = item.addons?.map(a => a.name).join(', ') || '';
+                    const itemTotal = item.unitPrice * item.qty;
+                    
+                    return `
+                        <div class="cart-item">
+                            <div class="item-info">
+                                <div class="item-name">${escapeHtml(item.item.name)} × ${item.qty}</div>
+                                <div class="item-details">
+                                    ${optionsText ? escapeHtml(optionsText) + ' · ' : ''}
+                                    ${addonsText ? 'Add-ons: ' + escapeHtml(addonsText) : ''}
+                                </div>
+                            </div>
+                            <div class="item-price">RM ${itemTotal.toFixed(2)}</div>
+                        </div>
+                    `;
+                }).join('');
+                const cartItemsEl = document.getElementById('cartItems');
+                if (cartItemsEl) cartItemsEl.innerHTML = cartItemsHtml;
+            }
+        }
+        
+        // Helper function to escape HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Print confirmation
+        function printConfirmation() {
+            window.print();
+        }
+
+        // Track order
+        function trackOrder() {
+                window.location.href = 'custTrack.html';       
+        }
+
+        // Back to menu
+        function backToMenu() {
+            if (window.opener) {
+                window.opener.location.reload();
+                window.close();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadOrderData);
+    </script>
+</body>
+</html>

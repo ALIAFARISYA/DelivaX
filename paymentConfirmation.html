@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation - DelivaX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #e8f4fd 0%, #d4ecfa 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .confirmation-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(26, 95, 122, 0.2);
+        }
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .error-icon {
+            font-size: 80px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #1a5f7a;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #1a5f7a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #0e4055;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div id="content"></div>
+        <a href="javascript:window.close()" class="btn">Close Window</a>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const transactionId = urlParams.get('transactionId');
+        
+        if (status === 'success') {
+            document.getElementById('content').innerHTML = `
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Payment Successful!</h2>
+                <p>Transaction ID: ${transactionId}</p>
+                <p>Thank you for your payment. Your order has been confirmed.</p>
+            `;
+        } else {
+            document.getElementById('content').innerHTML = `
+                <div class="error-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h2>Payment Cancelled</h2>
+                <p>Your payment has been cancelled. Please try again.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
